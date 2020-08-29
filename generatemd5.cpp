@@ -5,17 +5,15 @@ generateMD5::generateMD5()
 
 }
 
-void generateMD5::generate(uint32_t begin_wind, uint32_t end_wind, avt* avtomat, std::ofstream&  file)
+void generateMD5::generate(uint32_t begin_wind, uint32_t end_wind, avt* avtomat)
 {
     unsigned int gen_Number = begin_wind;
     std::string pin_cod = "00000000";
     key_md5_frame temp_frame;
     int step = 1;
-    int i = 0;
+    //int i = 0;
 
     if(avtomat == nullptr)avtomat = new avt;
-
-    //printf("Size of structor node = %d\n", (int)sizeof(node));
 
     while(gen_Number < end_wind)
     {
@@ -25,27 +23,15 @@ void generateMD5::generate(uint32_t begin_wind, uint32_t end_wind, avt* avtomat,
         temp_frame.key = pin_cod;
         temp_frame.MD5 = MDString(pin_cod.c_str());
 
-        /*
-        std::transform(temp_frame.MD5.begin(), temp_frame.MD5.end(), temp_frame.MD5.begin(), toupper); //high registr symbol
+        //std::cout << "key " << temp_frame.key << "\t MD5 " << temp_frame.MD5 << std::endl;
 
-        avtomat->add_md5(temp_frame.MD5, i);
-
-        if(temp_frame.MD5.length() < 32)
-             {if(file.is_open()) file << temp_frame.key << ' ' << temp_frame.MD5 << " This short length"<< std::endl;}
-        else
-             {if(file.is_open()) file << temp_frame.key << ' ' << temp_frame.MD5 << std::endl;}
-        */
         ++gen_Number;
-        ++i;
+        //++i;
         step = 1;
         temp_frame.MD5.clear();
         temp_frame.key.clear();
     }
 
-
-    //delete avtomat;
-
-    //pin_cod.
 }
 
 void generateMD5::count_step(uint32_t value, int32_t* step)

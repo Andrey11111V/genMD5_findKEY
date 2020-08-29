@@ -337,10 +337,10 @@ char* MDPrint (unsigned char digest[16])
 
     for(i = 0; i < 16; i++)
     {
-        temp = (digest[i] >> 4);
+        temp = (digest[i] >> 4);//xxxx0000
         converOneSymbol(&temp, &s[i*2]);
         temp = 0;
-        temp = (digest[i] & 0xf);
+        temp = (digest[i] & 0xf);//0000xxxx
         converOneSymbol(&temp, &s[(i*2) + 1]);
         temp = 0;
 
@@ -355,8 +355,6 @@ char* MDPrint (unsigned char digest[16])
 //!!!!
 void converOneSymbol(char* inp, char* out)
 {
-    char t = *inp;
-
     if(*inp <= 9)
     {
         out[0] = *inp + 0x30; //addeting nomber with nabel ACSII

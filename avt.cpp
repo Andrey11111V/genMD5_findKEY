@@ -26,7 +26,7 @@ avt::avt()
 avt::~avt()
 {
     this->delete_tree(rooot);
-    printf("Delete tree \n");
+    //printf("Delete tree \n");
 }
 
 void avt::add_md5(std::string line_md5, unsigned int answer)

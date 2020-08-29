@@ -20,7 +20,7 @@ class avt
 {
 
     node* rooot;
-    std::string communication_avt = "0123456789ABCDEF";
+    const std::string communication_avt = "0123456789ABCDEF";
 
 public:
     avt();
