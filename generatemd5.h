@@ -7,7 +7,6 @@
 #include "avt.h"
 #include "struct_frame.h"
 
-
 #define SIZE_PIN 8
 
 class generateMD5

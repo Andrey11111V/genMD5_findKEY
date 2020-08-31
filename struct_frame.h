@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-struct key_md5_frame{
+struct key_frame{
     std::string MD5;
     std::string key;
 };
