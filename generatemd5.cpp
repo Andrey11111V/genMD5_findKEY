@@ -1,5 +1,8 @@
 #include "generatemd5.h"
 
+#include <iostream>
+#include <fstream>
+
 generateMD5::generateMD5()
 {
 
@@ -9,11 +12,15 @@ void generateMD5::generate(uint32_t begin_wind, uint32_t end_wind, avt* avtomat)
 {
     unsigned int gen_Number = begin_wind;
     std::string pin_cod = "00000000";
-    key_md5_frame temp_frame;
+
+    std::ofstream fl;
+    fl.open("test.txt");
+
+    key_frame temp_frame;
     int step = 1;
     //int i = 0;
 
-    if(avtomat == nullptr)avtomat = new avt;
+    //if(avtomat == nullptr)avtomat = new avt;
 
     while(gen_Number < end_wind)
     {
@@ -23,7 +30,7 @@ void generateMD5::generate(uint32_t begin_wind, uint32_t end_wind, avt* avtomat)
         temp_frame.key = pin_cod;
         temp_frame.MD5 = MDString(pin_cod.c_str());
 
-        //std::cout << "key " << temp_frame.key << "\t MD5 " << temp_frame.MD5 << std::endl;
+        fl << temp_frame.MD5 << std::endl;
 
         ++gen_Number;
         //++i;

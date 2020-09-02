@@ -35,14 +35,16 @@ void avt::add_md5(std::string line_md5, unsigned int answer)
     node* root2 = rooot;
     node* tmp = NULL;
     unsigned short nimber_symb = 0;
+    //char symb;
 
     for(i=0; i < (unsigned int)line_md5.size(); ++i) //-1 = без '\n'
     {
-        //char symb = line_md5[i];
+        //symb = line_md5[i];
         nimber_symb = communication_avt.find(line_md5[1]);
         if(root2->character[nimber_symb] != 0)   //if symbol exist
         {
             root2 = root2->character[nimber_symb];
+            tmp = root2;
             continue;
         }
         else //if not create new and add in array
@@ -68,8 +70,11 @@ void avt::delete_tree(node *root)
             root->character[i] = NULL;
         }
 
-    delete root;
-    root = NULL;
+    if(root != rooot)
+    {
+        delete root;
+        root = NULL;
+    }
 }
 
 uint32_t avt::search(std::string line_md5)

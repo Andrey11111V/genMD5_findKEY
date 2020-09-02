@@ -16,7 +16,7 @@ readFile::readFile(std::string name_file)
 
     while(getline(myFile, line))
     {
-        if(!line.empty()) //third check an empty
+        if(line.empty()) //third check an empty
         {
             ++i;
             continue;

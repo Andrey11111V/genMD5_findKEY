@@ -11,19 +11,9 @@ using namespace std;
 
 int main()
 {
-    /*
-    generateMD5 md;
-    avt* at = new avt;
-
-    md.generate(0,10000000, at);
-
-    std::cout << "genrate md5 ending" << std::endl;
-
-    at->~avt();
-    */
 
     avt* avt_r = nullptr;
-    readFile file_read("Test_MD5");
+    readFile file_read("exampleTest");
 
     if((avt_r = file_read.getAvt()) == nullptr)
     {
@@ -32,9 +22,12 @@ int main()
     }
 
 
+
     /*change function generate, change variable avt on variable vector<key_frame>*/
+    /*
     generateMD5 md;
-    md.generate(0,10000000, at);
+    md.generate(0,10000000, nullptr);
+    */
 
     return 0;
 }

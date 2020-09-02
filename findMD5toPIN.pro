@@ -7,7 +7,7 @@ SOURCES += \
         avt.cpp \
     generatemd5.cpp \
         main.cpp \
-        md5.cpp \ \
+        md5.cpp \
     readfile.cpp
 
 HEADERS += \
