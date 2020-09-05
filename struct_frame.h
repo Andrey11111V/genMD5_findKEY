@@ -10,10 +10,12 @@ struct key_frame{
     std::string key;
 };
 
+/*
 struct list_hash{
     std::string hash;
     struct list_hash* next;
     struct list_hash* previous;
 };
+*/
 
 #endif // FRAME_H

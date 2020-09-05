@@ -9,8 +9,21 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char *argv[])
 {
+    generateMD5 gerMD5;
+
+    if(argc == 2)
+    {
+        std::ofstream fmyOut(argv[1]);
+
+        gerMD5.getFileOut(fmyOut);
+
+        if(!gerMD5.setFileOut_is_open())
+            std::cout << "Unable to open/greate file \n";
+        else
+            std::cout << "Write to " << argv[1] << std::endl;
+    }
 
     avt* avt_r = nullptr;
     readFile file_read("exampleTest");
@@ -21,14 +34,8 @@ int main()
         return 1;
     }
 
-    generateMD5 gerMD5;
-    gerMD5.generate(0, 10000000, avt_r);
 
-    /*change function generate, change variable avt on variable vector<key_frame>*/
-    /*
-    generateMD5 md;
-    md.generate(0,10000000, nullptr);
-    */
+    gerMD5.generate(0, 10000000, avt_r);   
 
     return 0;
 }

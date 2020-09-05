@@ -18,8 +18,8 @@ typedef struct node_char{
 
 class avt
 {
-
     node* rooot;
+private:
     const std::string communication_avt = "0123456789ABCDEF";
 
 public:
