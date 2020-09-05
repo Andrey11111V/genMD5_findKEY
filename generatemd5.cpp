@@ -10,17 +10,21 @@ generateMD5::generateMD5()
 
 void generateMD5::generate(uint32_t begin_wind, uint32_t end_wind, avt* avtomat)
 {
+
+    if(avtomat == nullptr)
+    {
+        printf("Generate: erroe: variable avtomat NULL");
+        return;
+    }
+
     unsigned int gen_Number = begin_wind;
     std::string pin_cod = "00000000";
 
-    std::ofstream fl;
-    fl.open("test.txt");
+    //std::ofstream fl;
+    //fl.open("test.txt");
 
     key_frame temp_frame;
-    int step = 1;
-    //int i = 0;
-
-    //if(avtomat == nullptr)avtomat = new avt;
+    int step = 1;    
 
     while(gen_Number < end_wind)
     {
@@ -30,7 +34,8 @@ void generateMD5::generate(uint32_t begin_wind, uint32_t end_wind, avt* avtomat)
         temp_frame.key = pin_cod;
         temp_frame.MD5 = MDString(pin_cod.c_str());
 
-        fl << temp_frame.MD5 << std::endl;
+        if(avtomat->search(temp_frame.MD5) != MAX_UINT32_AVT)
+            std::cout << "Key: " << temp_frame.key << "\t hash MD5: " << temp_frame.MD5 << std::endl;
 
         ++gen_Number;
         //++i;

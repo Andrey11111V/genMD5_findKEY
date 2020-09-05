@@ -25,7 +25,10 @@ avt::avt()
 
 avt::~avt()
 {
-    this->delete_tree(rooot);
+    if(rooot != nullptr)
+        this->delete_tree(rooot);
+
+    rooot = nullptr;
     //printf("Delete tree \n");
 }
 
@@ -40,7 +43,7 @@ void avt::add_md5(std::string line_md5, unsigned int answer)
     for(i=0; i < (unsigned int)line_md5.size(); ++i) //-1 = без '\n'
     {
         //symb = line_md5[i];
-        nimber_symb = communication_avt.find(line_md5[1]);
+        nimber_symb = communication_avt.find(line_md5[i]);
         if(root2->character[nimber_symb] != 0)   //if symbol exist
         {
             root2 = root2->character[nimber_symb];
@@ -85,6 +88,7 @@ uint32_t avt::search(std::string line_md5)
 
     node* current = rooot;
     uint32_t i = 0;
+    //char symb;
     uint32_t number_symb = 0;
 
     while(current != nullptr)
@@ -92,6 +96,7 @@ uint32_t avt::search(std::string line_md5)
         if(current->answer < MAX_UINT32_AVT)
             return current->answer;
 
+        //symb = line_md5[i];
         number_symb = communication_avt.rfind(line_md5[i]);
         current = current->character[number_symb];
 

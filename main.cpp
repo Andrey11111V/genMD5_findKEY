@@ -21,7 +21,8 @@ int main()
         return 1;
     }
 
-
+    generateMD5 gerMD5;
+    gerMD5.generate(0, 10000000, avt_r);
 
     /*change function generate, change variable avt on variable vector<key_frame>*/
     /*
