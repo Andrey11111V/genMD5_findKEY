@@ -12,10 +12,17 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     generateMD5 gerMD5;
+    std::string fileRead;
 
-    if(argc == 2)
+    if((argc < 2) || (argc >3))
     {
-        std::ofstream fmyOut(argv[1]);
+        std::cout << "Entering name file for reading md5 hash \n\t or entering name file for reading md5 hash and entr write find key" << std::endl;
+        return 0;
+    }
+
+    if(argc == 3)
+    {
+        std::ofstream fmyOut(argv[2]);
 
         gerMD5.getFileOut(fmyOut);
 
@@ -26,7 +33,7 @@ int main(int argc, char *argv[])
     }
 
     avt* avt_r = nullptr;
-    readFile file_read("exampleTest");
+    readFile file_read(argv[1]);
 
     if((avt_r = file_read.getAvt()) == nullptr)
     {
