@@ -12,8 +12,8 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     generateMD5 gerMD5;
-    std::string fileRead;
 
+    /*
     if((argc < 2) || (argc >3))
     {
         std::cout << "Entering name file for reading md5 hash \n\t or entering name file for reading md5 hash and entr write find key" << std::endl;
@@ -29,11 +29,12 @@ int main(int argc, char *argv[])
         if(!gerMD5.setFileOut_is_open())
             std::cout << "Unable to open/greate file \n";
         else
-            std::cout << "Write to " << argv[1] << std::endl;
+            std::cout << "Write to " << argv[2] << std::endl;
     }
+    */
 
     avt* avt_r = nullptr;
-    readFile file_read(argv[1]);
+    readFile file_read(/*argv[1]*/"exampleTest");
 
     if((avt_r = file_read.getAvt()) == nullptr)
     {
@@ -42,7 +43,7 @@ int main(int argc, char *argv[])
     }
 
 
-    gerMD5.generate(0, 10000000, avt_r);   
+    gerMD5.generate(0, 1000000, avt_r);
 
     return 0;
 }

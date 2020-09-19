@@ -1,0 +1,55 @@
+[33mcommit 3152631e308c641b070a0c82b7ca749fff21bcc0[m
+Author: Ваше Имя <you@example.com>
+Date:   Tue Sep 15 21:12:31 2020 +0300
+
+    Read from file with md5 hash
+
+[33mcommit aa706868a739f6fee715511b8282345b245c1ad0[m
+Author: Ваше Имя <you@example.com>
+Date:   Sat Sep 5 22:52:23 2020 +0300
+
+    in main(): write to file(argv[1])
+
+[33mcommit 24d6cfd4beb945df8c0e5d35f28784abd284a2ce[m
+Author: Ваше Имя <you@example.com>
+Date:   Sat Sep 5 11:45:09 2020 +0300
+
+    Greate clacc generate MD5, fix method this class is generate. Fix method avt.add() chenge the interator from 1 to i addeting a node to the boron
+
+[33mcommit 3f2482ac242cb2234537a677e5439ffbb58003f3[m
+Author: Ваше Имя <you@example.com>
+Date:   Wed Sep 2 22:07:31 2020 +0300
+
+    +ReadMe
+
+[33mcommit 5d052d047375a8d7872ecfe7936758bf8633ab12[m
+Author: Ваше Имя <you@example.com>
+Date:   Wed Sep 2 22:03:29 2020 +0300
+
+    fix generate md5(delete variable avt  to handle  function)
+
+[33mcommit 914a0325a49d5e91eecd127bdf908e0307069d1e[m
+Author: Ваше Имя <you@example.com>
+Date:   Mon Aug 31 23:24:12 2020 +0300
+
+    1. Create class readFile, this class create boron from string form read file.
+    2. Need testing class readFile.
+    3. Change in classe generate
+
+[33mcommit 52fe64a5111df2088692dbea94caa0ab88253972[m
+Author: Ваше Имя <you@example.com>
+Date:   Sun Aug 30 00:01:54 2020 +0300
+
+    + Readme.md
+
+[33mcommit 0e8d98c656aaa357d5dcd9f4000fbe1ac3fc98c8[m
+Author: Ваше Имя <you@example.com>
+Date:   Sat Aug 29 23:13:43 2020 +0300
+
+    generate to 0 for 1000000
+
+[33mcommit e6d1a427e77074f90946a1e707f38f3ac027e3b9[m
+Author: Ваше Имя <you@example.com>
+Date:   Sun Aug 9 01:13:58 2020 +0300
+
+    converting hex to char in function MDPrint md.h

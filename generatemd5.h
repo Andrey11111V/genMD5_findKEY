@@ -4,6 +4,9 @@
 #include <cstdint>
 #include <iostream>
 #include <fstream>
+#include <thread>
+#include <vector>
+#include <mutex>
 
 #include "md5.h"
 #include "avt.h"
@@ -16,6 +19,8 @@ class generateMD5
 
 private:
     void count_step(uint32_t value, int32_t* step);
+
+    void search(avt avt_t, std::vector <key_frame> frame_v);
     std::ofstream fileOut;
 
 public:    
