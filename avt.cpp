@@ -26,7 +26,7 @@ avt::avt()
 avt::~avt()
 {
     if(rooot != nullptr)
-        this->delete_tree(rooot);
+        //this->delete_tree(rooot);
 
     rooot = nullptr;
     //printf("Delete tree \n");
@@ -82,6 +82,7 @@ void avt::delete_tree(node *root)
 
 uint32_t avt::search(std::string line_md5)
 {
+    std::cout << line_md5 << std::endl;
 
     if(line_md5.empty())
         return MAX_UINT32_AVT;

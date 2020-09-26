@@ -7,21 +7,16 @@ generateMD5::generateMD5()
 
 }
 
-void generateMD5::generate(uint32_t begin_wind, uint32_t end_wind, avt* avtomat)
-{
-
-    if(avtomat == nullptr)
-    {
-        printf("Generate: erroe: variable avtomat NULL");
-        return;
-    }
+void generateMD5::generate(uint32_t begin_wind, uint32_t end_wind, avt& avtomat)
+{    
 
     unsigned int gen_Number = begin_wind;
     std::string pin_cod = "00000000";
 
     std::vector <key_frame> frame_v;
+    threadHeap heap_thr;
     key_frame temp_frame;
-    int step = 1;    
+    int step = 1;
 
     while(gen_Number < end_wind)
     {
@@ -31,17 +26,9 @@ void generateMD5::generate(uint32_t begin_wind, uint32_t end_wind, avt* avtomat)
 
         temp_frame.key = pin_cod;
         temp_frame.MD5 = MDString(pin_cod.c_str());
-        frame_v.push_back(temp_frame);
+        //frame_v.push_back(temp_frame);
 
-        /*
-        if(avtomat->search(temp_frame.MD5) != MAX_UINT32_AVT)
-        {
-            if(fileOut.is_open())
-                fileOut << "Key: " << temp_frame.key << "\t hash MD5: " << temp_frame.MD5 << std::endl;
-            else
-                std::cout << "Key: " << temp_frame.key << "\t hash MD5: " << temp_frame.MD5 << std::endl;
-        }
-        */
+        heap_thr.start_theard(avtomat, temp_frame, std::move(fileOut));
 
         ++gen_Number;
         //++i;
@@ -50,7 +37,8 @@ void generateMD5::generate(uint32_t begin_wind, uint32_t end_wind, avt* avtomat)
         temp_frame.key.clear();
     }
 
-    search(*avtomat, frame_v);
+    heap_thr.end_thread();
+    //search(avtomat, frame_v);
 }
 
 void generateMD5::count_step(uint32_t value, int32_t* step)
@@ -69,7 +57,7 @@ void generateMD5::getFileOut(std::ofstream &file)
     fileOut.swap(file);
 }
 
-void /*generateMD5::*/search_thread(avt avt_t, key_frame temp_f, bool fileOpen)//, std::ofstream fileOut)
+void search_thread(avt avt_t, key_frame temp_f, bool fileOpen)//, std::ofstream fileOut)
 {
     std::mutex m;
 
@@ -114,3 +102,4 @@ void generateMD5::search(avt avt_t, std::vector <key_frame> frame_v)
         threads[i].join();
     }
 }
+

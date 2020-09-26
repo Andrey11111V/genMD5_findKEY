@@ -9,7 +9,8 @@ SOURCES += \
     generatemd5.cpp \
         main.cpp \
         md5.cpp \
-    readfile.cpp
+    readfile.cpp \
+    threadheap.cpp
 
 HEADERS += \
     avt.h \
@@ -17,4 +18,5 @@ HEADERS += \
     global.h \
     md5.h \
     readfile.h \
-    struct_frame.h
+    struct_frame.h \
+    threadheap.h

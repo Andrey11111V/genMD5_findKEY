@@ -2,6 +2,7 @@
 #include "md5.h"
 #include "generatemd5.h"
 #include "readfile.h"
+#include "threadheap.h"
 
 /*
  * need read list to avt and generate md5list to thread? need testing this metod
@@ -43,7 +44,9 @@ int main(int argc, char *argv[])
     }
 
 
-    gerMD5.generate(0, 1000000, avt_r);
+    gerMD5.generate(0, 45000, *avt_r);
+
+    //threadHeap temp;
 
     return 0;
 }
