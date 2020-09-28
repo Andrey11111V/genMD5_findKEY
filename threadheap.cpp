@@ -34,40 +34,19 @@ void threadHeap::def_max_thread()
 
         count_thread_sys = count_thread_sys - (count_thread_sys/10);//10% for systems
     }
-
-    std::cout << "Number of thread = " << cmdLinee << std::endl;
 }
 
 void threadHeap::start_theard(avt& avt_t, key_frame& frame_v, std::ofstream fileOut)
 {
-    size_t i = 0;
-    std::thread* temp_tr = nullptr;
-    //std::thread* temp_thread = NULL;
+    bool open_file = true;
 
-    //if(!heap_thread.empty())
-    //{
-        //while(i<heap_thread.size() && i<count_thread_sys)
-        //{
-            //temp_tr = new std::thread(searvInThr, avt_t, frame_v, std::move(fileOut), fileOut.is_open());
+    heap_thread.push_back(std::thread(searvInThr, avt_t, frame_v, std::move(fileOut), open_file));
 
-            heap_thread.push_back(std::thread(searvInThr, avt_t, frame_v, std::move(fileOut), fileOut.is_open()));
-            temp_tr = nullptr;
-
-            std::cout << "Size heap = " << heap_thread.size() << std::endl;
-
-            if(heap_thread.size() >= count_thread_sys)
-            {
-                end_thread();
-            }
-        //}
-           //heap_thread[i].join();
-
-            //++i;
-
-        //heap_thread[i]
-    //}
+    if(heap_thread.size() >= count_thread_sys)
+        end_thread();
 }
 
+//clear heap thread
 void threadHeap::end_thread()
 {
     unsigned long i = 0;
@@ -75,8 +54,6 @@ void threadHeap::end_thread()
     while(i < heap_thread.size())
     {
         heap_thread[i].join();
-        //delete heap_thread[i];
-        //heap_thread.erase(heap_thread.begin() + i);
         ++i;
 
     }

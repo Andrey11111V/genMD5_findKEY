@@ -82,8 +82,6 @@ void avt::delete_tree(node *root)
 
 uint32_t avt::search(std::string line_md5)
 {
-    std::cout << line_md5 << std::endl;
-
     if(line_md5.empty())
         return MAX_UINT32_AVT;
 

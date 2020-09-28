@@ -34,6 +34,10 @@ int main(int argc, char *argv[])
     }
     */
 
+    std::ofstream fmyOut(/*argv[2]*/"TestOut");
+
+    gerMD5.getFileOut(fmyOut);
+
     avt* avt_r = nullptr;
     readFile file_read(/*argv[1]*/"exampleTest");
 
@@ -43,10 +47,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-
-    gerMD5.generate(0, 45000, *avt_r);
-
-    //threadHeap temp;
+    gerMD5.generate(0, 1000000, *avt_r);
 
     return 0;
 }
