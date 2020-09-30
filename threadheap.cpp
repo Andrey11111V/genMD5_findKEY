@@ -1,6 +1,10 @@
 #include "threadheap.h"
 
-void searvInThr(avt avt_t, key_frame frame_v, std::ofstream fileOut, bool open_file)
+std::ofstream fileOut;
+
+std::vector<std::string> temp_buff;
+
+void input_answer(avt avt_t, key_frame frame_v,/* std::ofstream fileOut,*/ bool open_file)
 {
     std::mutex m;
 
@@ -9,7 +13,9 @@ void searvInThr(avt avt_t, key_frame frame_v, std::ofstream fileOut, bool open_f
         if(open_file)
         {
             m.lock();
+            std::string c = "Key: " + frame_v.key + "\t hash MD5: " + frame_v.MD5 + "\n";
                fileOut << "Key: " << frame_v.key << "\t hash MD5: " << frame_v.MD5 << std::endl;
+                //temp_buff.push_back(c);
             m.unlock();
         }
         else
@@ -36,11 +42,11 @@ void threadHeap::def_max_thread()
     }
 }
 
-void threadHeap::start_theard(avt& avt_t, key_frame& frame_v, std::ofstream fileOut)
+void threadHeap::start_theard(avt& avt_t, key_frame& frame_v/*, std::ofstream fileOut*/)
 {
     bool open_file = true;
 
-    heap_thread.push_back(std::thread(searvInThr, avt_t, frame_v, std::move(fileOut), open_file));
+    heap_thread.push_back(std::thread(input_answer, avt_t, frame_v/*, std::move(fileOut)*/, open_file));
 
     if(heap_thread.size() >= count_thread_sys)
         end_thread();
@@ -60,4 +66,15 @@ void threadHeap::end_thread()
     heap_thread.clear();
 }
 
+void threadHeap::write_file()
+{
+    size_t i = 0;
+    while (i < temp_buff.size())
+    {
+        fileOut << temp_buff[i] << std::endl;
+        ++i;
+    }
+}
+
+threadHeap::threadHeap(std::ofstream &file) {fileOut.swap(file); def_max_thread();}
 

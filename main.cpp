@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
     */
 
     std::ofstream fmyOut(/*argv[2]*/"TestOut");
+    fmyOut << "111";
 
     gerMD5.getFileOut(fmyOut);
 
@@ -46,6 +47,8 @@ int main(int argc, char *argv[])
         std::cout << "Not create boron for serach key  an hash of MD5" << std::endl;
         return 1;
     }
+
+    fmyOut << "222";
 
     gerMD5.generate(0, 1000000, *avt_r);
 
