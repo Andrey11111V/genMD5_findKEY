@@ -2,7 +2,14 @@
 
 std::ofstream fileOut;
 
-std::vector<std::string> temp_buff;
+std::vector<key_frame> temp_buff;
+
+
+threadHeap::threadHeap(std::ofstream &file)
+{
+    fileOut.swap(file);
+    def_max_thread();
+}
 
 void input_answer(avt avt_t, key_frame frame_v,/* std::ofstream fileOut,*/ bool open_file)
 {
@@ -13,9 +20,7 @@ void input_answer(avt avt_t, key_frame frame_v,/* std::ofstream fileOut,*/ bool 
         if(open_file)
         {
             m.lock();
-            std::string c = "Key: " + frame_v.key + "\t hash MD5: " + frame_v.MD5 + "\n";
                fileOut << "Key: " << frame_v.key << "\t hash MD5: " << frame_v.MD5 << std::endl;
-                //temp_buff.push_back(c);
             m.unlock();
         }
         else
@@ -68,13 +73,14 @@ void threadHeap::end_thread()
 
 void threadHeap::write_file()
 {
+
     size_t i = 0;
+
+    if(fileOut.is_open())
     while (i < temp_buff.size())
     {
-        fileOut << temp_buff[i] << std::endl;
+        fileOut << "Key: " << temp_buff[i].key << " \tMD5:" << temp_buff[i].MD5 << std::endl;
         ++i;
     }
+
 }
-
-threadHeap::threadHeap(std::ofstream &file) {fileOut.swap(file); def_max_thread();}
-
