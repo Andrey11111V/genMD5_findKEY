@@ -49,7 +49,7 @@ void threadHeap::def_max_thread()
 
 void threadHeap::start_theard(avt& avt_t, key_frame& frame_v/*, std::ofstream fileOut*/)
 {
-    bool open_file = true;
+    bool open_file = fileOut.is_open();
 
     heap_thread.push_back(std::thread(input_answer, avt_t, frame_v/*, std::move(fileOut)*/, open_file));
 

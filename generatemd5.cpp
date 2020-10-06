@@ -29,6 +29,8 @@ void generateMD5::generate(uint32_t begin_wind, uint32_t end_wind, avt& avtomat)
         temp_frame.key = pin_cod;
         temp_frame.MD5 = MDString(pin_cod.c_str());
 
+        std::cout << temp_frame.key << std::endl;
+
         heap_thr.start_theard(avtomat, temp_frame/*, std::move(fileOut)*/);
 
         ++gen_Number;
