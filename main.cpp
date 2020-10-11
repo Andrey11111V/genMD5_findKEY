@@ -6,6 +6,7 @@
 #include "generatemd5.h"
 #include "readfile.h"
 #include "threadheap.h"
+#include "avt.h"
 
 TEST_CASE("Can check generate hash MD5","[md5]")
 {
@@ -18,7 +19,21 @@ TEST_CASE("Can check generate hash MD5","[md5]")
     CHECK(Catch_MDString("12345678901234567890123456789012345678901234567890123456789012345678901234567890") == "57edf4a22be3c955ac49da2e2107b67a");
 }
 
-TEST_CASE("Can check generate hash MD5","[md5]")
+TEST_CASE("Can chcek search in avt","[avt]")
 {
+    avt a;
+    a.add_md5("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 1);
+    a.add_md5("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", 2);
+    a.add_md5("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC", 3);
+    a.add_md5("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", 4);
+    a.add_md5("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", 5);
+    a.add_md5("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF", 6);
+    a.add_md5("11111111111111111111111111111111", 7);
+    a.add_md5("00000000000000000000000000000000", 8);
+    a.add_md5("99999999999999999999999999999999", 9);
+    a.add_md5("AAALLLLLLLLLLLLLLLLLLLLLLLLLLLLL", 10);
+    a.add_md5("LLLLAAALLLLLLLLLLLLLLLLLLLLLLLLL", 11);
 
+
+    std::cout << "npos = " << std::string::npos << std::endl;
 }

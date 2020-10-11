@@ -37,25 +37,27 @@ void avt::add_md5(std::string line_md5, unsigned int answer)
     unsigned int i = 0;
     node* root2 = rooot;
     node* tmp = NULL;
-    unsigned short nimber_symb = 0;
+    unsigned long nimber_symb = 0;
     //char symb;
 
     for(i=0; i < (unsigned int)line_md5.size(); ++i) //-1 = без '\n'
     {
         //symb = line_md5[i];
         nimber_symb = communication_avt.find(line_md5[i]);
-        if(root2->character[nimber_symb] != 0)   //if symbol exist
-        {
-            root2 = root2->character[nimber_symb];
-            tmp = root2;
-            continue;
-        }
-        else //if not create new and add in array
-        {
-            tmp = create();
-            root2->character[nimber_symb] = tmp;
-            root2 = tmp;
-        }
+
+        if(nimber_symb != std::string::npos) //if number_symb == npos then function rfind not find symbol line_md5[i]
+            if(root2->character[nimber_symb] != 0)   //if symbol exist
+            {
+                root2 = root2->character[nimber_symb];
+                tmp = root2;
+                continue;
+            }
+            else //if not create new and add in array
+            {
+                tmp = create();
+                root2->character[nimber_symb] = tmp;
+                root2 = tmp;
+            }
 
         nimber_symb = 0;
      }
@@ -88,7 +90,7 @@ uint32_t avt::search(std::string line_md5)
     node* current = rooot;
     uint32_t i = 0;
     //char symb;
-    uint32_t number_symb = 0;
+    unsigned long number_symb = 0;
 
     while(current != nullptr)
     {
@@ -97,8 +99,12 @@ uint32_t avt::search(std::string line_md5)
 
         //symb = line_md5[i];
         number_symb = communication_avt.rfind(line_md5[i]);
-        current = current->character[number_symb];
 
+        //if number_symb == npos then function rfind not find symbol line_md5[i]
+        if(number_symb != std::string::npos)
+            current = current->character[number_symb];
+
+        number_symb = 0;
         ++i;
     }
 
