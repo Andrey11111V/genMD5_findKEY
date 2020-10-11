@@ -343,8 +343,6 @@ char* MDPrint (unsigned char digest[16])
         temp = (digest[i] & 0xf);//0000xxxx
         converOneSymbol(&temp, &s[(i*2) + 1]);
         temp = 0;
-
-
     }
 
     return s;
@@ -357,10 +355,19 @@ void converOneSymbol(char* inp, char* out)
 {
     if(*inp <= 9)
     {
-        out[0] = *inp + 0x30; //addeting nomber with nabel ACSII
+        out[0] = *inp + 0x30; //addeting nomber with nabel ACSII, from 0 to 9
     }
     else if(*inp  <= 16)
     {
-        out[0] = (int)*inp + 0x37; //addeting nomber with nabel ACSII
+        out[0] = (int)*inp + 0x37; //addeting nomber with nabel ACSII, from A to B
     }
+}
+
+//Wraper for Catch2
+std::string Catch_MDString(const char* textt)
+{    
+   std::string b = std::string(MDString(textt));
+   std::transform(b.begin(), b.end(), b.begin(), tolower);
+
+   return b;
 }

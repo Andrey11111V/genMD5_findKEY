@@ -21,6 +21,7 @@ class avt
     node* rooot;
 private:
     const std::string communication_avt = "0123456789ABCDEF";
+    node* create();
 
 public:
     avt();
@@ -28,9 +29,6 @@ public:
     void add_md5(std::string line_md5, unsigned int answer);
     void delete_tree(node* root);
     uint32_t search(std::string line_md5);
-
-private:
-    node* create();
 };
 
 #endif // AVT_H

@@ -1,6 +1,8 @@
 #ifndef MD5_H
 #define MD5_H
 
+#include <iostream>
+#include <algorithm>
 #include <string.h>
 #include <stdlib.h>
 #include "global.h"
@@ -44,6 +46,9 @@ char* MDPrint (unsigned char digest[16]);
 
 //out size at least two byte
 void converOneSymbol(char* inp, char* out);
+
+//Wrapper for Catch2 check
+std::string Catch_MDString(const char* texxt);
 
 
 #endif // MD5_H

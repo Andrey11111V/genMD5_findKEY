@@ -1,53 +1,24 @@
+#define CATCH_CONFIG_MAIN
+#include "./catch/catch.hpp"
+
 #include <iostream>
 #include "md5.h"
 #include "generatemd5.h"
 #include "readfile.h"
 #include "threadheap.h"
 
-/*
- * need read list to avt and generate md5list to thread? need testing this metod
- */
-
-using namespace std;
-
-int main(int argc, char *argv[])
+TEST_CASE("Can check generate hash MD5","[md5]")
 {
-    generateMD5 gerMD5;
+    CHECK(Catch_MDString("") == "d41d8cd98f00b204e9800998ecf8427e");
+    CHECK(Catch_MDString("a") == "0cc175b9c0f1b6a831c399e269772661");
+    CHECK(Catch_MDString("abc") == "900150983cd24fb0d6963f7d28e17f72");
+    CHECK(Catch_MDString("message digest") == "f96b697d7cb7938d525a2f31aaf161d0");
+    CHECK(Catch_MDString("abcdefghijklmnopqrstuvwxyz") == "c3fcd3d76192e4007dfb496cca67e13b");
+    CHECK(Catch_MDString("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789") == "d174ab98d277d9f5a5611c2c9f419d9f");
+    CHECK(Catch_MDString("12345678901234567890123456789012345678901234567890123456789012345678901234567890") == "57edf4a22be3c955ac49da2e2107b67a");
+}
 
+TEST_CASE("Can check generate hash MD5","[md5]")
+{
 
-    if((argc < 2) || (argc >3))
-    {
-        std::cout << "Entering name file for reading md5 hash \n\t or entering name file for reading md5 hash and entr write find key" << std::endl;
-        return 0;
-    }
-
-    if(argc == 3)
-    {
-        std::ofstream fmyOut(argv[2]);
-
-        gerMD5.getFileOut(fmyOut);
-
-        if(!gerMD5.setFileOut_is_open())
-            std::cout << "Unable to open/greate file \n";
-        else
-            std::cout << "Write to " << argv[2] << std::endl;
-    }
-
-
-    //std::ofstream fmyOut(argv[2]/*"TestOut"*/);
-
-    //gerMD5.getFileOut(fmyOut);
-
-    avt* avt_r = nullptr;
-    readFile file_read(argv[1]/*"exampleTest"*/);
-
-    if((avt_r = file_read.getAvt()) == nullptr)
-    {
-        std::cout << "Not create boron for serach key  an hash of MD5" << std::endl;
-        return 1;
-    }   
-
-    gerMD5.generate(0, 100000000, *avt_r);
-
-    return 0;
 }
